@@ -1,6 +1,4 @@
-# Express Boilerplate!
-
-This is a boilerplate project used for starting new projects!
+# This is an exercise in Express server organization, GET, POST & DELETE using a boiler plate
 
 ## Set up
 
