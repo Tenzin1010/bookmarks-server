@@ -1,7 +1,7 @@
 const express = require('express')
 const bookmarks = require('../bookmarksData')
 const uuid = require('uuid/v4')
-const logger = require('./logger')
+const logger = require('../logger')
 
 const bookmarksRouter = express.Router();
 const bodyParser = express.json();
@@ -17,35 +17,32 @@ bookmarksRouter
          //Validation required for the values of bookmarks, title url, rating, desc
          if(!title) {
     
-            //   logger.error(`TItle is required`)
+            logger.error(`TItle is required`)
              return res
               .status(400) 
-              .send('Title is required')
+              .send('part of .status Message: Title is required')
           }
         
           if(!url) {
-            //  logger.error(`Url is required`)
+            logger.error(`Url is required`)
              return res 
               .status(400)
               .send('Url is required')
           }
         
           if(!rating) {
-            
-            //logger.error(`Rating is required`)
+            logger.error(`Rating is required`)
               return res
               .status(400)
               .send('Rating is required')
           }
         
           if(!desc) {
-            
-              // logger.error(`desc is required`)
+              logger.error(`desc is required`)
               return res
               .status(400)
               .send('desc is required')
           }
-        
         
           //generate id if all the other property validation passes
           const id = uuid();
@@ -60,15 +57,17 @@ bookmarksRouter
           
           bookmarks.push(bookmark);
         
-          // logger.info(`Card with id ${id} was created`)
+        logger.info(`Card with id ${id} was created`)
         
           res
             .status(201)
-            .location(`http://localhost:8000/bookmarks/${id}`)
+            .location('http://localhost:8000/bookmarks/${id}')
             .json(bookmark)
     })
 
-    bookmarksRouter
+
+
+bookmarksRouter
     .route('/bookmarks/:id')
     .get((req, res) => {
         const {id} = req.params;
@@ -77,14 +76,14 @@ bookmarksRouter
         const bookmark = bookmarks.find(b => b.id == id)
       
         //validation 
-        if(!card) {
-          // logger.error(`Card with id ${id} not found`)
+        if(!bookmark) {
+          logger.error(`Bookmark with id ${id} not found`)
          return res
             .status(404)
-            .send('card not found')
+            .send('bookmark not found')
         }
         //display the card if validation passed
-        res.json(card);
+        res.json(bookmark);
           
       })
     .delete(bodyParser, (req, res) => {

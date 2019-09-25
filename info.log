@@ -3,3 +3,16 @@
 {"message":"Unauthorized request to join path /bookmarks","level":"error"}
 {"message":"Unauthorized request to join path /bookmarks","level":"error"}
 {"message":"Unauthorized request to join path /bookmarks","level":"error"}
+{"message":"TItle is required","level":"error"}
+{"message":"TItle is required","level":"error"}
+{"message":"Rating is required","level":"error"}
+{"message":"Unauthorized request to join path /bookmarks/$%7Bid%7D","level":"error"}
+{"message":"Unauthorized request to join path /favicon.ico","level":"error"}
+{"message":"Card with id f9ec0b00-d217-4aff-b805-eeb277e7e680 was created","level":"info"}
+{"message":"Card with id f49e1e71-5010-4c08-ad46-4849f773d573 was created","level":"info"}
+{"message":"TItle is required","level":"error"}
+{"message":"Card with id  not found","level":"error"}
+{"message":"Bookmark with id 1 not found","level":"error"}
+{"message":"TItle is required","level":"error"}
+{"message":"Card with id de04cc8b-b987-47fd-b16d-b9bc5c3270fe was created","level":"info"}
+{"message":"Card with id 0207c8a8-6fc1-46ce-ab43-b6a22f0f7db9 was created","level":"info"}
