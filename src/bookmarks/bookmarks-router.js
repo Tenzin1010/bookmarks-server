@@ -2,9 +2,13 @@ const express = require('express')
 const bookmarks = require('../bookmarksData')
 const uuid = require('uuid/v4')
 const logger = require('../logger')
+const validateBookmarkCreation = require('../validation/bookmarks-validation')
 
 const bookmarksRouter = express.Router();
 const bodyParser = express.json();
+
+//have to initiate method use() to make it usable 
+bookmarksRouter.use(validateBookmarkCreation)
 
 bookmarksRouter
     .route('/bookmarks')
@@ -12,38 +16,11 @@ bookmarksRouter
     res
       .json(bookmarks)
     })
-    .post(bodyParser, (req, res) => {
+    .post(bodyParser, 
+      validateBookmarkCreation,
+       (req, res) => {
         const {title, url, rating, desc} = req.body;
-         //Validation required for the values of bookmarks, title url, rating, desc
-         if(!title) {
-    
-            logger.error(`TItle is required`)
-             return res
-              .status(400) 
-              .send('part of .status Message: Title is required')
-          }
-        
-          if(!url) {
-            logger.error(`Url is required`)
-             return res 
-              .status(400)
-              .send('Url is required')
-          }
-        
-          if(!rating) {
-            logger.error(`Rating is required`)
-              return res
-              .status(400)
-              .send('Rating is required')
-          }
-        
-          if(!desc) {
-              logger.error(`desc is required`)
-              return res
-              .status(400)
-              .send('desc is required')
-          }
-        
+         
           //generate id if all the other property validation passes
           const id = uuid();
         
@@ -61,7 +38,7 @@ bookmarksRouter
         
           res
             .status(201)
-            .location('http://localhost:8000/bookmarks/${id}')
+            .location(`http://localhost:8000/bookmarks/${id}`)
             .json(bookmark)
     })
 
